@@ -3,7 +3,7 @@
 #
 
 # Name of your site (displayed in the header)
-name: cxyda.blog
+name: cxyda.github.io
 
 # Name of the author
 author: Daniel Steegmüller
@@ -26,7 +26,7 @@ footer-links:
   flickr:
   github: Cxyda
   instagram:
-  linkedin: https://www.linkedin.com/in/danielsteegmueller/
+  linkedin: danielsteegmueller
   pinterest:
   rss: rss
   twitter: Cxyda
