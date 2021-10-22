@@ -6,10 +6,10 @@
 name: cxyda.blog
 
 # Name of the author
-author: Amit Merchant
+author: Daniel Steegmüller
 
 # Short bio or description (displayed in the header)
-description: An elegant Jekyll theme
+description: A game development blog about c# and Unity3D
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: /images/reverie.png
@@ -21,12 +21,12 @@ avatar: /images/reverie.png
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: mail@polybeast.de
+  email: steegmueller@tuta.io
   facebook:
   flickr:
   github: Cxyda
   instagram:
-  linkedin: 
+  linkedin: https://www.linkedin.com/in/danielsteegmueller/
   pinterest:
   rss: rss
   twitter: Cxyda
