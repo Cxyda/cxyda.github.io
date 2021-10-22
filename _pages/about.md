@@ -4,26 +4,11 @@ title: About
 permalink: /about/
 ---
 
-[Reverie](https://github.com/amitmerchant1990/reverie) is a Jekyll theme which is simple and opinionated. It's actually a fork of [jekyll-now](https://github.com/barryclark/jekyll-now) with some additional features and personal touches which I've implemented to suit my needs for [my blog](https://www.amitmerchant.com).
+### Welcome to my Blog!
+I'm Daniel game developer with heart and soul. I started my professional career in 2009 as a 3D Artist working at a small company which did PC retail titles. After that I worked in the browser and mobile market industry for Bigpoint and Innogames.
+After 8 years of working as a 3D Artist and reaching the senior level I decided to leave my comfort zone and take a new path to do the thing what I love to do in my spare time as a full time job: Creating games in Unity3D! So I started to study software engineering in my spare time besides my regular full-time job as a senior 3D artist and finished my bachelors degree (B.Sc.) 3.5 years later.
 
-This is a plug-and-play Jekyll theme which you can use on GitHub Pages without even setting up a local environment.
+In 01/2018 Innogames gave me the trust and opportunity to switch my contract to a full-time software developer. Since then, I'm working on mobile titles created with Unity3D.
 
-## Features
-
-- Command-line free fork-first workflow, using GitHub.com to create, customize and post to your blog
-- Fully responsive and mobile optimized base theme
-- Sass/Coffeescript support using Jekyll 2.0
-- Free hosting on your GitHub Pages user site
-- All the SEO goodies comes in-built
-- Markdown blogging
-- Syntax highlighting using Pygments
-    - [Dracula syntax theme](https://draculatheme.com/) included
-- Disqus commenting
-- Google Analytics integration
-- Fuzzy search across blog posts
-- Pagination of posts works out-of-the-box.
-- Categorize posts out-of-the box
-- RSS Feed
-- In-built sitemap
 
 Learn more about it [here](https://github.com/amitmerchant1990/reverie) on how to get started.
