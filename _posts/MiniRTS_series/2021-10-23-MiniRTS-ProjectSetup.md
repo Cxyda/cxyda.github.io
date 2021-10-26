@@ -7,7 +7,7 @@ categories: [C#,Unity3D,MiniRTS]
 In this short section we will just setup the basic project structure. As mentioned before, I will use the Zenject (Extenject) framework for [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection). If you never heard of Zenject or even Dependency Injection I advise you to get familiar with this concept. It is super helpful and makes your life much easier when working on bigger projects or with multiple people on a single codebase.
 Zenject is the original name of the Dependency Injection framework of Unity. It got abandoned at some point and development got continued in *Extenject* so they are basically the same.
 
-You can download the project files from my GitHub repository where Extenject is already added. In that project you also find Prefabs, materials, shaders and textures for you ready to use. You can of course start from scratch and do everything on your own. But, I won't explain every step in detail so more knowledge about Unity and other tools like Photoshop may be required to follow along. So if you did download the project I've provided you you can basically skip the next sections and proceed with m,y next blog post about Selection and Input Handling.
+[You can download the project files from my GitHub repository](https://github.com/Cxyda/MiniRTS-Tutorial/releases/tag/0.1) where Extenject is already added. In that project you also find Prefabs, materials, shaders and textures for you ready to use. You can of course start from scratch and do everything on your own. But, I won't explain every step in detail so more knowledge about Unity and other tools like Photoshop may be required to follow along. So if you did download the project I've provided you you can basically skip the next sections and proceed with m,y next blog post about Selection and Input Handling.
 
 If you didn't already, start by creating a standard Unity3D project. When Unity is ready go to *Window -> Package Manager* and search for 'Extenject' in the Unity Registry. Install that package and add it to your project.
 In your Assets folder in Unity create a couple more folders like so:
@@ -55,8 +55,8 @@ namespace Game.Installers
 
 Nice. That's it already. In the next section we will extend this class and add our bindings there. 
 
-If you had issues to follow remember that you always can check out my GitHub repository. You should definitely check out / download the files in the `Content` folder. This series expects you to have certain assets like Prefabs and Shaders etc.
+If you had issues to follow remember that you always can check out my GitHub repository. You should definitely [check out / download the files](https://github.com/Cxyda/MiniRTS-Tutorial/releases/tag/0.1) in the `Content` folder. This series expects you to have certain assets like Prefabs and Shaders etc.
 
 In the next blogpost we will finally start with our first game systems which are crucial for any RTS game: Object Selection and Input Handling.
 
-##### [< Introduction]({% post_url 2021-10-22-MiniRTS-introduction %}) | [Selection and input handling >]()
+##### [< Introduction]({% post_url 2021-10-22-MiniRTS-introduction %}) | [Selection and input handling >]({% post_url 2021-10-23-MiniRTS-SelectionAndInputHandling %})
