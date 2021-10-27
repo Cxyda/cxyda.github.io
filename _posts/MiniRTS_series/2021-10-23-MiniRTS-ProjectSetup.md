@@ -59,4 +59,4 @@ If you had issues to follow remember that you always can check out my GitHub rep
 
 In the next blogpost we will finally start with our first game systems which are crucial for any RTS game: Object Selection and Input Handling.
 
-##### [< Introduction]({% post_url 2021-10-22-MiniRTS-introduction %}) | [Selection and input handling >]({% post_url 2021-10-23-MiniRTS-SelectionAndInputHandling %})
+##### [< Introduction]({% post_url 2021-10-22-MiniRTS-introduction %}) | [Selection and input handling >]()
