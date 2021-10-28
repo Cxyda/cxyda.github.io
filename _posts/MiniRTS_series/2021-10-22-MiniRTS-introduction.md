@@ -27,7 +27,6 @@ This project will use *Extenject* (formerly know as [Zenject](https://github.com
 1. Networking
 1. TechTrees
 
-
 #### Technology used
 - [Unity3D 2021.1.15f1](https://unity3d.com/de/get-unity/download)
 - [Extenject framework](https://assetstore.unity.com/packages/tools/utilities/extenject-dependency-injection-ioc-157735)
