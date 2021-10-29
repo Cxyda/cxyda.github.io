@@ -184,7 +184,7 @@ As you can see I already added the three methods we just wrote to the `LateUpdat
     }
 ```
 
-To test this script wen need to bind it in our `GameInstaller.cs` class which we created in the last blogpost. Add this line within our `InstallBindings()` method
+To test this script wen need to bind it in our `GameInstaller.cs` class which we created in the last blogpost. Add this line within our `InstallBindings()` method.
 
 ```csharp
 public override void InstallBindings()
@@ -192,6 +192,8 @@ public override void InstallBindings()
     Container.BindInterfacesAndSelfTo<InputHandler>().AsSingle().NonLazy();
 }
 ```
+
+As you can see we use `BindInterfacesAndSelfTo<T>` to bind our class. This binds the concrete `InputHandler` class. If we would also have implemented an `IInputHandler` interface we would also bind that and we could use that interface instead of the concrete class to reduce coupling even more. `AsSingle()` means that we want to bind it as [Singleton](https://en.wikipedia.org/wiki/Singleton_pattern) which means we will use only one single instance of this in our game. `NonLazy()` tells Zenject that we wan't to create an instance right away, and we don't want to wait until any other class requests a reference to it, before it gets instantiated.
 
 Press the play button and do some left, right and double left-clicks in your game window. you should see **Left click**, **Right click** and **Double left-click** logs printed to the console. Magic!
 
@@ -1035,7 +1037,7 @@ public override void InstallBindings()
 }
 ```
 
-Congratulations! You completed this tutorial. Your *game* is able to select units like all other AAA RTS games out there.
+Congratulations! You completed this tutorial. Your *game* is able to select units like all other AAA RTS games out there. We implemented these systems with minimal class coupling. In this tutorial we used the concrete class implementations instead of interfaces to shorten the post and since we only will have one implementation it doesn't really matter. When you check out the project repository you will see that I created and used interfaces because it's a good habit to use interfaces and for very big projects it also gives you a very nice boost in compile times when you separate your interfaces and your concrete implementation into different assembly definition files.
 
 ## BONUS: Object grouping
 
