@@ -12,20 +12,22 @@ There won't be any fancy graphics, so don't be disappointed that it looks bad at
 
 This project will use *Extenject* (formerly know as [Zenject](https://github.com/modesttree/Zenject)) for [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection).
 
+The latest state of this project can be found in [my GitHub repository](https://github.com/Cxyda/MiniRTS-Tutorial).
+
 
 #### Content of this series (might change on the go)
 
-1. Basic project setup
-1. Selection and Input handling
-1. Building Placement and Factories
-1. UI and Asset Management
-1. Units and Resource Gathering
-1. Camera Controls
-1. Battle
-1. Fog od War
-1. Lockstep Simulation
-1. Networking
-1. TechTrees
+- [x] v0.0 [#1 Basic project setup](https://github.com/Cxyda/MiniRTS-Tutorial/tree/0.1)
+- [x] v0.1 [#2 Selection and Input handling](https://github.com/Cxyda/MiniRTS-Tutorial/tree/0.2) 
+- [ ] \#3 Building Placement and Factories
+- [ ] \#4 UI and Asset Management
+- [ ] \#5 Units and Resource Gathering
+- [ ] \#6 Camera Controls
+- [ ] \#7 Battle
+- [ ] \#8 Fog od War
+- [ ] \#9 Lockstep Simulation
+- [ ] \#10 Networking
+- [ ] \#11 TechTrees
 
 #### Technology used
 - [Unity3D 2021.1.15f1](https://unity3d.com/de/get-unity/download)

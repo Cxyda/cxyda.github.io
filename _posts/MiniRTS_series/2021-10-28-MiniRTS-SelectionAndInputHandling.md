@@ -88,7 +88,7 @@ private void CheckLeftDoubleClick()
 
 First, we check if a left mouse button click has been performed in this frame. If so, we check whether we already started the double-click timer and if the elapsed time is smaller than the defined threshold. If that's the case we know the user performed a double-click. The reason for that is that we only start the timer when the left mouse button has already been down. Don't be confused why we do this after checking `_leftMouseButtonWasDown` again instead of handling that in the case above. This is necessary to distinguish between the first and the second click. We also need to reset the data when the timer exceeded the threshold. 
 
-The whole class until know looks like this:
+The whole class until now looks like this:
 
 ```csharp
 using UnityEngine;
