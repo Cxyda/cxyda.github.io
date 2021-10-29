@@ -110,7 +110,7 @@ namespace Game.InputHandling
     
         private bool _leftMouseButtonWasDown;
     
-        public void LateUpdate()
+        public void LateTick()
         {
             CheckLeftClick();
             CheckLeftDoubleClick();
@@ -164,10 +164,10 @@ namespace Game.InputHandling
 }
 ```
 
-As you can see I already added the three methods we just wrote to the `LateUpdate()` method as well as the variables where we store our data. The only thing which is left for now is to reset the data, so we can start fresh on the next frame. To do so, we add a `ResetMouseInputs()` methods at the end of `LateUpdate()` which looks` like this:
+As you can see I already added the three methods we just wrote to the `LateTick()` method as well as the variables where we store our data. The only thing which is left for now is to reset the data, so we can start fresh on the next frame. To do so, we add a `ResetMouseInputs()` methods at the end of `LateUpdate()` which looks` like this:
 
 ```csharp
-    public void LateUpdate()
+    public void LateTick()
     {
         CheckLeftClick();
         CheckRightClick();
@@ -207,7 +207,7 @@ public class InputHandler : ILateTickable
 
     public event Action OnRightClickPerformed;
 
-    public void LateUpdate()
+    public void LateTick()
     {
         CheckLeftClick();
         CheckLeftDoubleClick();
