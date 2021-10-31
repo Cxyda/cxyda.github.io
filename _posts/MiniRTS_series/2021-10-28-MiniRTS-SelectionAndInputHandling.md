@@ -23,7 +23,7 @@ We will create both classes within the `Assets/Scripts/Game/InputHandling` folde
 
 The *InputHandler* listens to user input and publishes events when an input happens. We don't call other scripts directly here to reduce coupling of the classes and to be able to use this class in other projects as well. That's in general a very good practice.
 
-Create a class called `InputHandler` and implement the `ILateTickable` interface. This interface comes with *Zenject* and adds the `LateTick()` method which is called everytime Unity calls `LateUpdate()` in its `Monobehaviour` classes. We could also let `InputHandler` inherit from `Monobehaviour` but then we would need to attach this class to any GameObject in the scene. This can be error prone when we forget to do so and just adds additional stuff which we need to think about. So let's just implement `ILateTickable` and let *Zenject* to the *thinking* for us. 
+Create a class called `InputHandler` and implement the `ILateTickable` interface. This interface comes with *Zenject* and adds the `LateTick()` method which is called everytime Unity calls `LateUpdate()` in its `MonoBehaviour` classes. We could also let `InputHandler` inherit from `MonoBehaviour` but then we would need to attach this class to any GameObject in the scene. This can be error prone when we forget to do so and just adds additional stuff which we need to think about. So let's just implement `ILateTickable` and let *Zenject* to the *thinking* for us. 
 
 ```csharp
 namespace Game.InputHandling
@@ -544,7 +544,7 @@ namespace Game.InputHandling
 You may have noticed that I sneaked in a small helper method called `IsCursorAboveUi()` which returns whether the mouse cursor is above a UI when a click happens. If that's the case we ignore the click, otherwise we would be able to select Unity which are behind our UI which we obviously don't want.
 
 ## Drawing the selection rectangle
-The logic for selecting objects with a selection rectangle is working, but we are not drawing this rectangle yet so the player doesn't see it. We have to fix that! We create another class for that called `SelectionRectDrawer` in the `InputHandling` folder. We will draw this rectangle as a `GUI.Box` on the screen using Unity's `OnGUI()` method. There are other ways to do that, but they are more complex and we don't have benefits from using those more complex solutions. To be able to use `OnGUI()` method we unfortunately have to inherit from `Monobehaviour`. Let's go ahead and create that very simple component.
+The logic for selecting objects with a selection rectangle is working, but we are not drawing this rectangle yet so the player doesn't see it. We have to fix that! We create another class for that called `SelectionRectDrawer` in the `InputHandling` folder. We will draw this rectangle as a `GUI.Box` on the screen using Unity's `OnGUI()` method. There are other ways to do that, but they are more complex and we don't have benefits from using those more complex solutions. To be able to use `OnGUI()` method we unfortunately have to inherit from `MonoBehaviour`. Let's go ahead and create that very simple component.
 
 ```csharp
 using Game.InputHandling;
@@ -646,7 +646,7 @@ namespace Game.Selection
 }
 ```
 
-This class inherits from `Monobehaviour` and will be put on every GameObject that can be selected. We could also use layers for that, but since a GameObject can only be on one layer at a time we gain more flexibility with the component approach. Selected objects in RTS games are normally highlighted with a selection circle around them. There are multiple ways to implement these selection circles.
+This class inherits from `MonoBehaviour` and will be put on every GameObject that can be selected. We could also use layers for that, but since a GameObject can only be on one layer at a time we gain more flexibility with the component approach. Selected objects in RTS games are normally highlighted with a selection circle around them. There are multiple ways to implement these selection circles.
 
 One common method would be to use a [projector](https://docs.unity3d.com/Manual/class-Projector.html) which projects a texture or a shader on the terrain. The problem with this is that it can get quite expensive when you select a lot of Units because the Terrain gets drawn again for every projector which projects something on it. This can get your graphics card busy quickly. Since we want to have a solid foundation for the next RTS blockbuster we discard this method.
 
@@ -667,7 +667,7 @@ You should also adjust the *Lighting* and *Probe* settings of the Mesh Renderer 
 Assign the `SelectableComponent` script the `ModelPlaceholder` GameObject in our prefabs and drag the `SelectionCircle` GameObject to the `SelectionCircleGO` field in the inspector. Repeat this process for all your Prefabs. You can of course also assign the `SelectableComponent` script to any other GameObject in the Prefab which has a collider component. Otherwise our we won't be able to hit the object with our Raycasts (which we will do in the *Casting Rays* section below).
 
  
-The core functionality is already implemented but we add two more methods to optimize our performance. We add the `OnBecameVisible()` and `OnBecameInvisible()` methods to our `SelectableComponent` class. Those methods are `Monobehaviour` methods and will be called when the renderer of the GameObject becomes visible or invisible to any camera. We can use this behaviour to register and unregister our object to our `SelectionService`.
+The core functionality is already implemented but we add two more methods to optimize our performance. We add the `OnBecameVisible()` and `OnBecameInvisible()` methods to our `SelectableComponent` class. Those methods are `MonoBehaviour` methods and will be called when the renderer of the GameObject becomes visible or invisible to any camera. We can use this behaviour to register and unregister our object to our `SelectionService`.
 
 ```csharp
 public class SelectableComponent : MonoBehaviour
@@ -977,7 +977,7 @@ namespace Game.Selection
 
 ```
 
-As you can see we implement Zenject's `IInitializable` interface. This interface has an `Initialize()` which is called when this class gets created basically the same way `Awake()` gets called on `Monobehaviour` classes. We could also inherit from `Monobehaviour` and attach it to a GameObject in the scene and assign the camera by hand, but as mentioned earlier this can be forgotten and therefore we let Zenject handle this for us. Zenject also injects a reference to our `InputHandler` class because we used the `[Inject]` attribute. Awesome!
+As you can see we implement Zenject's `IInitializable` interface. This interface has an `Initialize()` which is called when this class gets created basically the same way `Awake()` gets called on `MonoBehaviour` classes. We could also inherit from `MonoBehaviour` and attach it to a GameObject in the scene and assign the camera by hand, but as mentioned earlier this can be forgotten and therefore we let Zenject handle this for us. Zenject also injects a reference to our `InputHandler` class because we used the `[Inject]` attribute. Awesome!
 
 In the `Initialize()` method we register for our click events and call `OnLeftClickPerformed()` and `OnDoubleLeftClickPerformed()` when they happen. Now we need a reference to our GameCamera. We cannot simply assign it like we would if this would be a component on a GameObject so we need to get the reference at the start of the game. We do this by calling `Camera.main`. Everywhere on the internet they say you should avoid this like the plague because what Unity does behind the scenes is it calls `GameObject.FindGameObjectWithTag("MainCamera")` which is expensive especially when you do it in a method which gets called every frame, but here we do it only once at the start and cache the reference so that is fine. 
 
