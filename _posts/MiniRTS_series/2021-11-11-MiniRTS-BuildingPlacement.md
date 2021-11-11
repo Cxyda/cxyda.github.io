@@ -5,10 +5,10 @@ categories: [C#,Unity3D,MiniRTS]
 ---
 
 Welcome back! Today we want to tackle another very important part of most RTS games. Base building! Some people might
- argue that base building is outdated for RTS games, but I'm still a big fan of te classics like Warcraft, Age of
-  Empires or Company of Heroes, so I will add this as well. Placing buildings is actually quite simple but if you
-   have flexibility, extendability and clean architecture in mind there is a lot to do. So let's get started. At the
-    end of this section you will have something like this:
+argue that base building is outdated for RTS games, but I'm still a big fan of te classics like Warcraft, Age of
+Empires or Company of Heroes, so I will add this as well. Placing buildings is actually quite simple but if you
+have flexibility, extendability and clean architecture in mind there is a lot to do. So let's get started. At the
+end of this section you will have something like this:
 
 ![SelectionAndInputHandling result]({{site.baseurl}}/images/resources/MiniRTS_series/BuildingPlacement_Result.gif)
 
@@ -16,19 +16,19 @@ Welcome back! Today we want to tackle another very important part of most RTS ga
 
 ### First, add the Addressables package
 We will also add some infrastructure like asset loading to our game which will make our lives easier later on. For
- that, we will use Addressables. We are also going to add a very small piece of simulation code. First, we need to
-  add the Addressables package. For that, go to the Unity package manager: `Window -> Package Manager` and add the
-   `Addressables` package from the *Unity Registry* to the game. The latest version for me of this package is `1.16.19`.
+that, we will use Addressables. We are also going to add a very small piece of simulation code. First, we need to
+add the Addressables package. For that, go to the Unity package manager: `Window -> Package Manager` and add the
+`Addressables` package from the *Unity Registry* to the game. The latest version for me of this package is `1.16.19`.
 
 ![Addressables package in the package manager]({{site.baseurl}}/images/resources/MiniRTS_series/BuildingPlacement_PackageManager.png)
 
 
-After importing the new package we are ready to use Addressables in our game. If you are unfamiliar with Addressables
-, and my explanations in this tutorial are not enough, I'd recommend asking google for some basic resources. Since we
- are using assembly definition files we also need to add a reference to the addressables package to our Game assembly
- . Let's find and select the `RTS.Game` assembly file in our project folder, which should be at `Assets/Scripts/Game/` and
- add `Unity.Addressables` and `Unity.ResourceManager` to our *Assembly Definition References*. Otherwise, our
-  IDE won't be able to find the classes of this package. 
+After importing the new package we are ready to use Addressables in our game. If you are unfamiliar with Addressables,
+and my explanations in this tutorial are not enough, I'd recommend asking google for some basic resources. Since we
+are using assembly definition files we also need to add a reference to the addressables package to our Game assembly.
+Let's find and select the `RTS.Game` assembly file in our project folder, which should be at `Assets/Scripts/Game/` and
+add `Unity.Addressables` and `Unity.ResourceManager` to our *Assembly Definition References*. Otherwise, our IDE won't
+be able to find the classes of this package.
 
 ![RTS.Game assembly definition references]({{site.baseurl}}/images/resources/MiniRTS_series/BuildingPlacement_assemblyDefinition.png)
 
@@ -45,91 +45,88 @@ Both classes will be very simple, to be precise, `AssetType` will just be an enu
 {% gist d710ef843bc2829f406b15111578437c AssetLoadService.cs %}
 
 
-
 That's already the whole class. I need to explain a few things here. First, I created an Interface so that we don't
- need to reference the implementation of the `AssetLoadService`. In this project we are using Addressables to load
-  the assets. If we decide to load our assets differently in another project, we could still use the interface and
-   just replace the implementation. That's always good.
+need to reference the implementation of the `AssetLoadService`. In this project we are using Addressables to load
+the assets. If we decide to load our assets differently in another project, we could still use the interface and
+just replace the implementation. That's always good.
    
 Next, I decided to make the `LoadAsset<T>(..)` method generic. By doing so, we only need a single method to load all
- kinds of assets with it. We just need to pass the type of the asset, and we will get the asset with the expected
-  type back.
+kinds of assets with it. We just need to pass the type of the asset, and we will get the asset with the expected
+type back.
   
-  You might wonder why this method has a return type of `void` and returning the asset via a callback
-   instead of returning it directly. That's because we are using Addressables and Addressables can only load assets
-    *asynchronously*. The reason for that is, that it may take some time until the asset is loaded. Therefore, we
-     cannot return it in the same stacktrace but use a callback which is invoked as soon as the job is done. If this
-      is new to you, it might feel a little weird at the beginning, but you will get used to it. Asynchronous
-       programming also requires doing things different than in regular synchronous programming (where you get the
-        response right away), but you will see this later.
+You might wonder why this method has a return type of `void` and returning the asset via a callback instead of
+returning it directly. That's because we are using Addressables and Addressables can only load assets *asynchronously*.
+The reason for that is, that it may take some time until the asset is loaded. Therefore, we cannot return it in the
+same stacktrace but use a callback which is invoked as soon as the job is done. If this is new to you, it might feel a
+little weird at the beginning, but you will get used to it. Asynchronous programming also requires doing things
+different from regular synchronous programming (where you get the response right away), but you will see this later.
 
 The Addressables system finds assets via keys (or addresses). These addresses are defined by us in the inspector. How
- exactly we will see later. We build our address from the `AssetType` and the `EntityType` which we didn't implement
-  yet, but we will in a minute. Both are enum types, and we just separate them by a `/` character so that our address
-   will look similar to a path e.g. `Buildings/BuildingA`. We also could have used the address directly to load our assets
-   but then every script that wants to load an asset would need to know the correct address of the asset it wants to
-     load. What if we decide to change the address or if we don't want to use Addressables anymore? In these cases we
-      would need to change things in multiple classes which is a nightmare in bigger projects and a very bad practice
-      . In general, if a scripts wants to load an asset it knows what it wants to load and which type it has
-       (GameObject, Audio file, config file etc.).
+exactly we will see later. We build our address from the `AssetType` and the `EntityType` which we didn't implement
+yet, but we will in a minute. Both are enum types, and we just separate them by a `/` character so that our address
+will look similar to a path e.g. `Buildings/BuildingA`. We also could have used the address directly to load our assets
+but then every script that wants to load an asset would need to know the correct address of the asset it wants to
+load. What if we decide to change the address or if we don't want to use Addressables anymore? In these cases we
+would need to change things in multiple classes which is a nightmare in bigger projects and a very bad practice.
+In general, if a scripts wants to load an asset it knows what it wants to load and which type it has (GameObject,
+Audio file, config file etc.).
       
 Since we call the asynchronous `Addressables.LoadAssetAsync` method to load the asset, we need to subscribe to the
- `completed` callback, which is invoked when the asset has been loaded. Then we will just grab the result of the
-  loading process, which will be the asset itself. 
+`completed` callback, which is invoked when the asset has been loaded. Then we will just grab the result of the
+loading process, which will be the asset itself.
 
 #### The AssetType enum
 
-The `AssetType` enum defines ass types of assets we would like to load in our game. This can be anything you like
-. For now, we add just a couple. This might be extended later, we will need most of these types at a much later
- state of this project.
+The `AssetType` enum defines ass types of assets we would like to load in our game. This can be anything you like.
+For now, we add just a couple. This might be extended later, we will need most of these types at a much later
+state of this project.
 
 So let's create a new enum file called `AssetType.cs`, put it to `Assets/Scrips/Game/AssetLoading` and add some
- assetTypes to it.
+assetTypes to it.
 
 {% gist 74938ee0d8515105588503638b7778e5 AssetType.cs %}
 
-Since enums in C# are basically stored as integers we assign each assetType a value. Then we are able to add
- / remove assetType in between. If we wouldn't define values here, the first enum would have the value of 0 and then
-  it would get incremented by 1 with each entry. If we then you add entries in between, the assigned integer values
-   would change for all following entries and screw up the serialization in all places where we used this enum
-   . Therefore, always pre-assign values when using enums is a good practice. I decided to let the `AssetType
-   ` inherit from `byte` which is a not necessary optimization, but since I'm pretty sure we won't have more than 256
-    different AssetTypes in the end, it would be overkill to use the default, which would be `integer`.
+Since enums in C# are basically stored as integers we assign each assetType a value. Then we are able to add / remove
+assetType in between. If we wouldn't define values here, the first enum would have the value of 0 and then
+it would get incremented by 1 with each entry. If we then you add entries in between, the assigned integer values
+would change for all following entries and screw up the serialization in all places where we used this enum.
+Therefore, always pre-assign values when using enums is a good practice. I decided to let the `AssetType` inherit
+from `byte` which is a not necessary optimization, but since I'm pretty sure we won't have more than 256 different
+AssetTypes in the end, it would be overkill to use the default, which would be `integer`.
 
 #### The EntityType enum
 
 The `EntityType` enum is similar to the `AssetType` but instead of defining types of assets with it, we use the
- `EntityType` as a unique identifier for any asset we have in the game. So anything which we would like to *identify
- *, for whatever reason, we could give it an `EntityType`. It is worth noting that this unique identifier **does not**
-  identify a specific instance of an entity. For example, we could have a tree in our game which could have the
-   `EntityType` *Tree*. If we now instantiate this tree a 1000 times to create a forrest out of it. All trees would
-    have the same `EntityType`. We could use this to get, for example, all trees in our game, but we cannot get the
-     evil tree with number 666. For that we would need something like an `EntityId` to be able to identify
-      specific instances, which we will create in a later tutorial. 
+`EntityType` as a unique identifier for any asset we have in the game. So anything which we would like to *identify*,
+for whatever reason, we could give it an `EntityType`. It is worth noting that this unique identifier **does not**
+identify a specific instance of an entity. For example, we could have a tree in our game which could have the
+`EntityType` *Tree*. If we now instantiate this tree a 1000 times to create a forrest out of it. All trees would have
+the same `EntityType`. We could use this to get, for example, all trees in our game, but we cannot get the evil tree
+with number 666. For that we would need something like an `EntityId` to be able to identify specific instances,
+which we will create in a later tutorial. 
 
-So let's create a new enum file called `EntityType.cs` and put it to `Assets/Scrips/Simulation/Data`. The whole
- folder structure does not exist yet. This is the first script which is part of our Simulation assembly. All script
-  in this assembly will be used on the server / the other clients in the network or sent via the network. Therefore,
-   we separate it from the scripts which are only needed or executed on the local client. 
+So let's create a new enum file called `EntityType.cs` and put it to `Assets/Scrips/Simulation/Data`. The whole folder
+structure does not exist yet. This is the first script which is part of our Simulation assembly. All script in this
+assembly will be used on the server / the other clients in the network or sent via the network. Therefore, we separate
+it from the scripts which are only needed or executed on the local client.
 
 
 {% gist 2702df03d9ddf0544b089549d7bf7773 EntityType.cs %}
 
 
 As you can see I also already defined some arbitrary values to the enums. If you plan to have more than 500 unique
- Buildings, Units, or Resources in your game you should assign different values. The numbers for Buildings for
-  example of course don't have to be consecutive and since we pre-assigned the values to the enums we can shuffle
-   the order of them around, but personally I like to have everything nice and clean ^^'.
+Buildings, Units, or Resources in your game you should assign different values. The numbers for Buildings for
+example of course don't have to be consecutive and since we pre-assigned the values to the enums we can shuffle
+the order of them around, but personally I like to have everything nice and clean ^^'.
 
 Okay, now let's leave the boring part behind and continue to implement some more game logic!
 
 ## Placing buildings
 
 We can finally start with the topic of this tutorial. The building placement. This section will tackle the building
- placement and position validation by using colliders and ray-casting. The building construction will be
-  finished instantly at first, but we will also add the possibility to define construction site, and a construction
-   timers. To implement all of this, we will create four new classes and put them into the `Assets/GameBuildMode
-   ` folder.
+placement and position validation by using colliders and ray-casting. The building construction will be finished
+instantly at first, but we will also add the possibility to define construction site, and a construction
+timers. To implement all of this, we will create four new classes and put them into the `Assets/GameBuildMode` folder.
   
  - `BuildModeView.cs` 
  - `BuildModeService.cs` 
@@ -174,10 +171,10 @@ In the `IsPlacementValid()` we return `true` when the collision counter is exact
 currently, so this will always return `true` for now. The `SetMaterialTint()` method will handle the coloring of our
 building while we didn't confirm the placement yet. To visualize whether the current position of our building is valid
 we set the material color to either `white` or `red`. Let's assign a new Material to the footprint mesh in our
- inspector. I added a special shader to the project which you can use. This shader shows the outline of the footprint 
- mesh similar to the `CircularOverlap` shader we used in the previous tutorial. The shader I've created is very basic,
- so feel free to find or create a better one yourself. Create a new Material and assign the `SquareOutline` shader to
-  it which you [can download here](https://gist.github.com/Cxyda/54accfe2d3b333852a028514ae5bb19d).
+inspector. I added a special shader to the project which you can use. This shader shows the outline of the footprint
+mesh similar to the `CircularOverlap` shader we used in the previous tutorial. The shader I've created is very basic,
+so feel free to find or create a better one yourself. Create a new Material and assign the `SquareOutline` shader to
+it which you [can download here](https://gist.github.com/Cxyda/54accfe2d3b333852a028514ae5bb19d).
 
 ![Footprint child object setup]({{site.baseurl}}/images/resources/MiniRTS_series/BuildingPlacement_PrefabSetup_2.png)
 
