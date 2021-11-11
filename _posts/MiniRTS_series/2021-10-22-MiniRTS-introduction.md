@@ -17,17 +17,18 @@ The latest state of this project can be found in [my GitHub repository](https://
 
 #### Content of this series (might change on the go)
 
-- [x] v0.0 [#1 Basic project setup](https://github.com/Cxyda/MiniRTS-Tutorial/tree/0.1)
-- [x] v0.1 [#2 Selection and Input handling](https://github.com/Cxyda/MiniRTS-Tutorial/tree/0.2) 
-- [ ] \#3 Building Placement and Factories
-- [ ] \#4 UI and Asset Management
-- [ ] \#5 Units and Resource Gathering
-- [ ] \#6 Camera Controls
-- [ ] \#7 Battle
-- [ ] \#8 Fog od War
-- [ ] \#9 Lockstep Simulation
-- [ ] \#10 Networking
-- [ ] \#11 TechTrees
+- [x] v0.1 [#1 Basic project setup](https://github.com/Cxyda/MiniRTS-Tutorial/tree/0.1)
+- [x] v0.2 [#2 Selection and Input handling](https://github.com/Cxyda/MiniRTS-Tutorial/tree/0.2) 
+- [x] v0.3 [#3 Building Placement](https://github.com/Cxyda/MiniRTS-Tutorial/tree/0.3)
+- [ ] \#4 Factories and Unit production
+- [ ] \#5 UI and Asset Management
+- [ ] \#6 Units and Resource Gathering
+- [ ] \#7 Camera Controls
+- [ ] \#8 Battle
+- [ ] \#9 Fog od War
+- [ ] \#10 Lockstep Simulation
+- [ ] \#11 Networking
+- [ ] \#12 TechTrees
 
 #### Technology used
 - [Unity3D 2021.1.15f1](https://unity3d.com/de/get-unity/download)
@@ -37,5 +38,3 @@ The latest state of this project can be found in [my GitHub repository](https://
 **Let's have a very good time together and let's get started!**
 
 ##### | [Selection and input handling >]({% post_url 2021-10-23-MiniRTS-ProjectSetup %})
-
-2021-10-23-MiniRTS-ProectSetup
