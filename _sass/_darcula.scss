@@ -12,9 +12,9 @@ code {
     line-height: 70%;
 }
 
-.highlighter-rouge { 
-    background-color: #FAFAFA; 
-    color: #FF554A; 
+.highlighter-rouge {
+    background-color: #fafafa;
+    color: #FF554A;
     font-size: 16px;
 }
 
@@ -95,3 +95,17 @@ code {
 .highlight .vi { color: #8be9fd; font-style: italic } /* Name.Variable.Instance */
 .highlight .vm { color: #8be9fd; font-style: italic } /* Name.Variable.Magic */
 .highlight .il { color: #bd93f9 } /* Literal.Number.Integer.Long */
+
+// override .gist table style
+
+.gist tr {
+    border-top: 0px;
+}
+
+.gist tr th {
+    border: 0px;
+}
+
+.gist tr td {
+    border: 0px;
+}
