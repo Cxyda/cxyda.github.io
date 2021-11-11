@@ -5,7 +5,7 @@ categories: [C#,Unity3D,MiniRTS]
 ---
 
 Welcome back! Today we want to tackle another very important part of most RTS games. Base building! Some people might
-argue that base building is outdated for RTS games, but I'm still a big fan of te classics like Warcraft, Age of
+argue that base building is outdated for RTS games, but I'm still a big fan of the classics like Warcraft, Age of
 Empires or Company of Heroes, so I will add this as well. Placing buildings is actually quite simple but if you
 have flexibility, extendability and clean architecture in mind there is a lot to do. So let's get started. At the
 end of this section you will have something like this:
