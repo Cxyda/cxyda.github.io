@@ -2,7 +2,7 @@
 layout: post
 title: Understanding Structs and Classes in C#
 tags: [C#,Unity3D]
-lastmod: 2024-11-17
+# lastmod: 2024-11-17
 ---
 
 When diving into the C# multiverse 🌌, we inevitably face the age-old questions about **where data lives**, **how the garbage collector (GC) behaves**, and **the eternal battle between structs and classes**. 🛠️ In this post, we’ll tackle these concepts with precision, dispel some myths, and arm you with actionable knowledge to level up your .NET skills. ⚡  
