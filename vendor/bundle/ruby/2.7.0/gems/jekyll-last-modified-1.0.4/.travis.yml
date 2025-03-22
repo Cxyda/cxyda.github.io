@@ -1,0 +1,5 @@
+language: ruby
+sudo: required
+dist: trusty
+script: bundle exec rake test
+

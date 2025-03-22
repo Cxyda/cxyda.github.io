@@ -1,0 +1,52 @@
+# Site settings
+title:          cxyda.github.io
+description:    "A game development blog about c# and Unity3D"
+baseurl:        ""
+url:          "https://cxyda.github.io" 
+
+# https://jekyllrb.com/docs/configuration/options/
+timezone: Asia/Kolkata
+
+# Google Analytics
+google_analytics: UA-43339302-11
+
+# Author
+#   This is the default author name displayed on all posts, can be overridden by setting a different `author: Your Name`
+#   in the frontmatter
+author:
+  name:         Daniel Steegmüller
+
+# Build settings
+markdown:       kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  
+include:
+  - _pages
+
+# Assets
+sass:
+  sass_dir:     /assets/css/_sass
+  style:        compressed
+
+# Gems
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-gist
+
+# Permalinks
+permalink:      /:title
+paginate:       5
+
+# Excludes
+exclude:
+  - README.md
+  - LICENSE.md
+
+# Disqus (Set to your disqus id)
+disqus: cxyda_github_io

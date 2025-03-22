@@ -1,0 +1,10 @@
+current directory: /home/runner/work/cxyda.github.io/cxyda.github.io/vendor/bundle/ruby/2.7.0/gems/sass-embedded-1.63.6/ext/sass
+/opt/hostedtoolcache/Ruby/2.7.8/x64/bin/ruby -I/opt/hostedtoolcache/Ruby/2.7.8/x64/lib/ruby/2.7.0/rubygems -rrubygems /home/runner/work/cxyda.github.io/cxyda.github.io/vendor/bundle/ruby/2.7.0/gems/rake-13.2.1/exe/rake RUBYARCHDIR\=/home/runner/work/cxyda.github.io/cxyda.github.io/vendor/bundle/ruby/2.7.0/extensions/x86_64-linux/2.7.0/sass-embedded-1.63.6 RUBYLIBDIR\=/home/runner/work/cxyda.github.io/cxyda.github.io/vendor/bundle/ruby/2.7.0/extensions/x86_64-linux/2.7.0/sass-embedded-1.63.6
+fetch https://github.com/sass/dart-sass/releases/download/1.63.6/dart-sass-1.63.6-linux-x64.tar.gz
+mkdir -p .
+tar -vxC . -f dart-sass-1.63.6-linux-x64.tar.gz --no-same-owner --no-same-permissions
+dart-sass/src/LICENSE
+dart-sass/src/dart
+dart-sass/src/sass.snapshot
+dart-sass/sass
+rm dart-sass-1.63.6-linux-x64.tar.gz
