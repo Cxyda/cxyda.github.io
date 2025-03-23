@@ -59,7 +59,7 @@ Shows the execution path, helping you understand how you got where you are.
 
 ### **11. Evaluate Expression (Alt + F8 / ⌥ + F8)** 🧪
 Lets you test and manipulate variable values on the fly.
-*Ever wish you could just fix a bug without stopping the game? Welcome to the future.* 🚀 (well ... almost, you still need to fix it after you stopped debugging ¯\_(ツ)_/¯ )
+*Ever wish you could just fix a bug without stopping the game? Welcome to the future.* 🚀 (well ... almost, you still need to fix it after you stopped debugging ¯\\_(ツ)_/¯ )
 
 ---
 
