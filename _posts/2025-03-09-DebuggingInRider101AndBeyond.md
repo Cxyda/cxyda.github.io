@@ -2,7 +2,7 @@
 layout: post
 title: Debugging In Rider and Unity, 101 and beyond
 tags: [C#,Unity3D]
-# lastmod: 2025-03-09
+# lastmod: 2025-03-23
 ---
 
 ## Debugging: The Ultimate Skill for Sanity Preservation 🧠💥
@@ -27,7 +27,7 @@ Detaches Rider from the Unity Editor without closing Unity itself.
 
 ### **3. Resume Program (F9 / ⌘ + ⌥ + R)** ▶️
 Continues execution after hitting a breakpoint.
-*Perfect when you just want to let your game run free again... until the next inevitable crash.*
+*Perfect when you just want to let your game run free again... until the next breakpoint hits.*
 
 ### **4. Pause Program** ⏸️
 Suspends execution at the current point so you can inspect what’s happening.
