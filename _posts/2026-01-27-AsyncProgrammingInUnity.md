@@ -414,12 +414,12 @@ async void Start()
 
 ### 2.6 The async void Problem
 
-`async void` (required for Unity event methods like `Start`, `Update`) creates unobservable exceptions [10]:
+`async void` (required for Unity event methods like `Start`, `Update`) creates exceptions that cannot be caught or handled by the caller [10]. In Unity, unhandled exceptions in `async void` are posted to `UnitySynchronizationContext` and **logged as errors** — they don't crash the application. In console apps without a `SynchronizationContext`, they would crash the process.
 
 ```csharp
 async void Start()
 {
-    await SomeFailingOperation(); // Exception crashes the application!
+    await SomeFailingOperation(); // Exception is logged but cannot be caught by the caller!
 }
 
 async Task SomeFailingOperation()
@@ -449,7 +449,7 @@ async void Start()
 | Aspect | Assessment |
 |--------|------------|
 | **Allocation** | Allocates per Task (reference type) |
-| **Error Handling** | Full try/catch (except async void) |
+| **Error Handling** | Full try/catch; async void requires internal try/catch (caller cannot catch) |
 | **Cancellation** | CancellationToken pattern |
 | **Return Values** | Task\<T\> |
 | **POCO Support** | Full |
@@ -658,7 +658,47 @@ async UniTask UnityIntegrationExamples(CancellationToken ct)
 }
 ```
 
-### 4.5 UniTaskVoid for Fire-and-Forget
+### 4.5 UniTaskVoid, Forget(), and Exception Behavior
+
+UniTask has three distinct patterns for fire-and-forget, each with different exception behavior:
+
+#### `UniTask` without await — exceptions are silently lost
+
+If you call an `async UniTask` method without awaiting it, any exception thrown inside is **silently swallowed**. No one observes the result, so the exception disappears:
+
+```csharp
+async UniTask SomeDangerousOperation()
+{
+    await UniTask.Delay(1000);
+    throw new Exception("This exception is silently lost!");
+}
+
+void Start()
+{
+    SomeDangerousOperation(); // No await, no .Forget() — exception vanishes silently
+}
+```
+
+#### `UniTask` with `.Forget()` — exceptions are logged
+
+Calling `.Forget()` on a `UniTask` hooks up an exception handler via `UniTaskScheduler.PublishUnobservedTaskException`, which logs the exception to Unity's console:
+
+```csharp
+async UniTask SomeBackgroundOperation()
+{
+    await UniTask.Delay(1000);
+    throw new Exception("This gets logged!");
+}
+
+void Start()
+{
+    SomeBackgroundOperation().Forget(); // Exception is logged via UniTaskScheduler
+}
+```
+
+#### `UniTaskVoid` with `.Forget()` — the recommended fire-and-forget pattern
+
+`UniTaskVoid` is a specialized type designed explicitly for fire-and-forget. Unlike `UniTask`, it **cannot be awaited** — it exists solely for this purpose. Calling `.Forget()` suppresses the compiler warning for discarding the return value and ensures exceptions are routed through `UniTaskScheduler.PublishUnobservedTaskException`:
 
 ```csharp
 async UniTaskVoid FireAndForgetSafe()
@@ -669,9 +709,67 @@ async UniTaskVoid FireAndForgetSafe()
 
 void Start()
 {
-    FireAndForgetSafe().Forget(); // Explicit acknowledgment
+    FireAndForgetSafe().Forget(); // Explicit acknowledgment — exception is logged
 }
 ```
+
+**Why `UniTaskVoid` over `UniTask.Forget()`?** `UniTaskVoid` is more lightweight — it doesn't allocate the task result tracking that a regular `UniTask` would, since the result is never observed anyway.
+
+#### Summary of exception behavior
+
+| Pattern | Exception Behavior |
+|---------|--------------------|
+| `async UniTask` — not awaited, no `.Forget()` | Silently lost |
+| `async UniTask` — with `.Forget()` | Logged via `UniTaskScheduler` |
+| `async UniTaskVoid` — with `.Forget()` | Logged via `UniTaskScheduler` |
+| `async UniTask` — awaited with try/catch | Caught normally |
+
+#### The interface trap: no compiler warnings
+
+The `async` keyword is an **implementation detail** — it cannot appear in an interface declaration. This means when you call a method through an interface, the compiler has no idea the implementation is async and **will not warn you** about a missing `await` or `.Forget()`:
+
+```csharp
+public interface IEnemyService
+{
+    UniTask SpawnEnemiesAsync(CancellationToken ct = default); // No 'async' keyword possible
+}
+
+public class EnemyService : IEnemyService
+{
+    public async UniTask SpawnEnemiesAsync(CancellationToken ct = default)
+    {
+        await UniTask.Delay(1000, cancellationToken: ct);
+        throw new Exception("Spawn failed!"); // Silently lost if not awaited!
+    }
+}
+
+public class GameManager : MonoBehaviour
+{
+    [Inject] private IEnemyService _enemyService;
+
+    void Start()
+    {
+        // Calling through the interface — NO compiler warning!
+        _enemyService.SpawnEnemiesAsync(); // Exception silently lost, no warning
+
+        // If you called the concrete class directly, the compiler WOULD warn
+        // about discarding the UniTask return value.
+    }
+}
+```
+
+This is particularly dangerous in DI-heavy codebases where nearly all calls go through interfaces. The fix is simple but requires discipline:
+
+```csharp
+void Start()
+{
+    _enemyService.SpawnEnemiesAsync(destroyCancellationToken).Forget(); // Safe
+    // or
+    await _enemyService.SpawnEnemiesAsync(destroyCancellationToken);    // Safe
+}
+```
+
+**Tip**: Consider using a Roslyn analyzer or code review rule to catch unawaited `UniTask` return values, especially on interface calls.
 
 ### 4.6 UniTask Summary
 
