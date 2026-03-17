@@ -8,25 +8,6 @@ tags: [C#,Unity3D]
 
 ---
 
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Evolution Timeline](#evolution-timeline)
-3. [Unity Coroutines](#1-unity-coroutines)
-4. [C# async/await with Task](#2-c-asyncawait-with-task)
-5. [Unity Awaitable](#3-unity-awaitable-unity-20231)
-6. [UniTask](#4-unitask)
-7. [The MonoBehaviour Constraint](#5-the-monobehaviour-constraint)
-8. [Dependency Injection with Zenject](#6-dependency-injection-with-zenject)
-9. [Unit Testing](#7-unit-testing)
-10. [Unified Problem: Four Implementations](#8-unified-problem-four-implementations)
-11. [Performance Benchmarks](#9-performance-benchmarks)
-12. [Feature Comparison Matrix](#10-feature-comparison-matrix)
-13. [Decision Framework](#11-decision-framework)
-14. [Migration Strategies](#12-migration-strategies)
-15. [Conclusion](#13-conclusion)
-16. [References](#references)
-
 ---
 
 ## Introduction
@@ -1699,6 +1680,12 @@ public sealed class ModernService : IModernService
 | **L**iskov Substitution | Cannot substitute | Mock-friendly |
 | **I**nterface Segregation | Inherits MB bloat | Minimal interfaces |
 | **D**ependency Inversion | Depends on Unity | Depends on abstractions |
+
+---
+
+### Verify It Yourself
+
+Many of the claims in this article — exception behavior in `async void`, `SynchronizationContext` capture, `UniTaskVoid.Forget()` logging, `destroyCancellationToken`, and more — can be verified hands-on. Download [AsyncClaimsTest.cs](/assets/data/AsyncClaimsTest.cs), drop it on any GameObject, hit Play, and check the console output against the claims above.
 
 ---
 
