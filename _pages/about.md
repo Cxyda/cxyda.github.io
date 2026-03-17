@@ -27,7 +27,8 @@ I dove headfirst into this challenge, earning my **B.Sc. in Software Engineering
 In **2018**, InnoGames gave me the chance to level up, transitioning into a full-time **software developer role**. That leap opened doors to a thrilling career:  
 - Developing **mobile games** using Unity3D.  
 - Joining **Unity Technologies** as a Software Developer, where I spent 2.5 incredible years.  
-- Moving on to **Voodoo.io** as a Senior Game Developer, crafting engaging experiences for players worldwide.  
+- Moving on to **Voodoo.io** as a Senior Game Developer, crafting engaging experiences for players worldwide.
+- Returning to **InnoGames** in January 2026 as a Senior Software Engineer, joining the **Heroes of History** team.
 
 ---
 

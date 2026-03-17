@@ -1,44 +1,50 @@
-// Colors
-$default-color: #555 !default;
-$default-shade: #353535 !default;
-$default-tint: #c08b28 !default;
-$grey-1: #979797 !default;
-$grey-2: #e5e5e5 !default;
-$grey-3: #f9f9f9 !default;
-$white: #fff !default;
-$blue: #4a9ae1 !default;
-$shadow-color: rgba(0, 0, 0, .2) !default;
-$code-color: #bf616a !default;
-$body-bg: #fff;
+// ======================
+// Modern Dark Theme
+// ======================
 
+// Core palette
+$bg-primary: #0a0e14;
+$bg-surface: #131920;
+$bg-elevated: #1a2130;
+$bg-hover: #1e2738;
 
-// Colors
-$default-color-dark: #98a0ac;
-$default-shade-dark: #353535;
-$default-tint-dark: #aaa;
-$shadow-color-dark: rgba(255, 255, 255, .2);
-$code-color-dark: #db1400;
-$body-bg-dark: #0F1216;
+// Text
+$text-primary: #c5cdd9;
+$text-heading: #e2e8f0;
+$text-muted: #6b7a8d;
+$text-faint: #3d4f5f;
 
+// Accent
+$accent: #64ffda;
+$accent-dim: rgba(100, 255, 218, 0.15);
+$accent-hover: #a5ffec;
+$link-color: #64ffda;
+
+// Code
+$code-color: #ff6b6b;
+$code-bg: #0d1117;
+
+// Borders & shadows
+$border-color: rgba(100, 255, 218, 0.08);
+$border-subtle: rgba(255, 255, 255, 0.06);
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+$shadow-glow: 0 0 20px rgba(100, 255, 218, 0.05);
 
 // Fonts
-$serif-primary: 'Libre Baskerville', 'Times New Roman', Times, serif !default;
-$serif-secondary: Palatino, 'Palatino LT STD', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif !default;
-$sans-serif: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif !default;
-$monospaced: Menlo, Monaco, monospace !default;
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, 'Courier New', monospace;
 
-//length variables for responsive design 
-//only used in tags.scss for the time being. Todo: standardize useage of sizes across the theme
+// Sizing
+$content-width: 780px;
 $on-phone: 450px;
+$on-tablet: 600px;
 
-@mixin box-sizing($type: border-box) {
-  -webkit-box-sizing: $type;
-  -moz-box-sizing: $type;
-  box-sizing: $type;
+// Transitions
+@mixin transition($args...) {
+  transition: $args;
 }
 
-@mixin transition($args...) {
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  transition: $args;
+@mixin box-sizing($type: border-box) {
+  box-sizing: $type;
 }

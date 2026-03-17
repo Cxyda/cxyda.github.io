@@ -1,40 +1,40 @@
+@use 'variables' as *;
+
 pre,
 code {
-  font-family: $monospaced;
+  font-family: $font-mono;
 }
 
 code {
-  background-color: $grey-3;
-  @media (prefers-color-scheme: dark) {
-    background-color: lighten($body-bg-dark, 10%);
-  }
-  border-radius: 3px;
+  background-color: $bg-elevated;
+  border: 1px solid $border-subtle;
+  border-radius: 4px;
   color: $code-color;
-  font-size: 85%;
-  padding: .25em .5em;
+  font-size: 0.85em;
+  padding: 0.2em 0.45em;
 }
 
 pre {
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
   white-space: pre-wrap;
 }
 
 pre code {
   background-color: transparent;
+  border: none;
   color: inherit;
   font-size: 100%;
   padding: 0;
 }
 
 .highlight {
-  background-color: $grey-3;
-  @media (prefers-color-scheme: dark) {
-    background-color: lighten($body-bg-dark, 10%);
-  }
-  border-radius: 3px;
-  line-height: 1.4;
-  margin: 0 0 1rem;
-  padding: 1rem;
+  background-color: $code-bg;
+  border: 1px solid $border-subtle;
+  border-radius: 8px;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+  padding: 1.25rem;
+  overflow: hidden;
 
   pre {
     margin-bottom: 0;
@@ -42,12 +42,9 @@ pre code {
   }
 
   .lineno {
-    color: $default-tint;
-    display: inline-block; // Ensures the null space also isn't selectable
-    padding: 0 .75rem 0 .25rem;
-    // Make sure numbers aren't selectable
-    -webkit-user-select: none;
-       -moz-user-select: none;
-            user-select: none;
+    color: $text-faint;
+    display: inline-block;
+    padding: 0 0.75rem 0 0.25rem;
+    user-select: none;
   }
 }

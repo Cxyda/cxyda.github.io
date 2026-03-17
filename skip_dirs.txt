@@ -1,0 +1,27 @@
+# Skip Directories Configuration
+#
+# Add directory names (one per line) to skip during restricted.txt discovery.
+# This prevents the security hooks from scanning slow directories.
+#
+# Built-in skip directories (always skipped):
+#   .git, node_modules, venv, __pycache__, dist, build, .venv, env
+#
+# Format:
+#   - One directory name per line (e.g., "vendor", "cache")
+#   - Lines starting with # are comments
+#   - Empty lines are ignored
+#   - Directory names are relative (not full paths)
+#
+# Usage:
+#   1. Copy this file to your project root: cp .claude/skip_dirs.txt.example skip_dirs.txt
+#   2. Add your slow directories below
+#   3. Restart Claude Code
+#
+# Example entries:
+
+# Add your custom skip directories below:
+vendor
+cache
+.mydir
+tmp
+Library

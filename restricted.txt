@@ -1,0 +1,118 @@
+# restricted.txt file for Claude Code Security
+# 
+# This file defines additional access restrictions using gitignore-style patterns.
+# These are used by the /.claude/hooks i.e. guard_restricted.py
+# File has to be placed as 'restricted.txt' in your project root to enable these restrictions.
+
+# =============================================================================
+# SECRETS AND CREDENTIALS
+# =============================================================================
+
+# Block entire secrets directory
+secrets/
+
+# Block all credential files
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Block environment files
+.env
+.env.*
+
+# Allow .env.example (documentation/template file)
+!.env.example
+
+# Block SSH keys
+id_rsa
+id_ed25519
+*.pub
+
+# =============================================================================
+# SENSITIVE CONFIGURATION FILES
+# =============================================================================
+
+# Block production configurations
+config/production.*
+config/prod.*
+/production/
+
+# Block database configurations
+config/database.json
+config/db.json
+database.yml
+db.yml
+
+# Block API configurations
+config/api-keys.json
+config/secrets.json
+
+# =============================================================================
+# LOGS AND TEMPORARY FILES
+# =============================================================================
+
+# Block log directories and files
+logs/
+*.log
+*.log.*
+
+# Block backup files
+backups/
+*.backup
+*.bak
+
+# Block temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Block cache directories
+cache/
+.cache/
+
+# =============================================================================
+# BUILD AND DEPLOYMENT ARTIFACTS
+# =============================================================================
+
+# Block deployment configurations
+deploy/
+deployment/
+k8s/
+kubernetes/
+
+# Block CI/CD sensitive files
+.ci/secrets/
+.github/secrets/
+
+# =============================================================================
+# EXCEPTIONS (ALLOW SPECIFIC FILES)
+# =============================================================================
+
+# Allow public configurations
+!config/public.json
+!config/schema.json
+!config/example.*
+
+# Allow debug logs in development
+!logs/debug/
+!*.debug.log
+
+# Allow documentation in secrets folder
+!secrets/README.md
+!secrets/example.*
+
+# =============================================================================
+# PROJECT-SPECIFIC RESTRICTIONS
+# =============================================================================
+
+# Block environment JSON files
+*.env.json
+
+# Block env directories with configs
+**/env/*.json
+**/env/*.yml
+**/env/*.yaml

@@ -1,0 +1,43 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Read|Write|Edit|MultiEdit|Glob|Grep|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_essential.py\"",
+            "timeout": 2
+          },
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_restricted.py\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "unity-tools-plugins@hec-claude-plugins": true,
+    "doc-helper@hec-claude-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "innogames-claude-marketplace": {
+      "source": {
+        "source": "git",
+        "url": "https://gitlab+deploy-token-59:gldt-2vjVQF_tPR1x29PeEzWM@gitlab.innogames.de/ai-taskforce/innogames-claude-marketplace.git"
+      }
+    },
+    "hec-claude-plugins": {
+      "source": {
+        "source": "git",
+        "url": "https://gitlab+deploy-token-64:gldt-w7Zxi2UBmr2z9EBo5XFb@gitlab.innogames.de/hec-tools/hec-claude-plugins.git"
+      }
+    }
+  },
+  "_comment_debug": "To enable debug logging, add --debug flag to hook commands or set CLAUDE_HOOKS_DEBUG=1 environment variable. Logs are written to PROJECT/.claude/tmp/log-{session_id}",
+  "_example_debug_cli": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_restricted.py\" --debug",
+  "_example_debug_env": "CLAUDE_HOOKS_DEBUG=1 python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_restricted.py\"",
+  "_example_view_logs": "tail -f .claude/tmp/log-*"
+}

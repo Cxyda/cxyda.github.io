@@ -1,51 +1,79 @@
+@use 'variables' as *;
+
 .catalogue {
   &-item {
-    border-bottom: 1px solid $grey-2;
-    color: $default-color;
-    @media (prefers-color-scheme: dark) {
-      color: $default-color-dark;
-    }
     display: block;
-    padding: 2rem 0;
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+    background: $bg-surface;
+    border: 1px solid $border-subtle;
+    border-radius: 10px;
+    color: $text-primary;
+    @include transition(all 0.25s ease);
 
-    &:hover .catalogue-line,
-    &:focus .catalogue-line {
-      width: 5rem;
+    &:hover,
+    &:focus {
+      background: $bg-hover;
+      border-color: $border-color;
+      box-shadow: $shadow-glow;
+      transform: translateY(-2px);
+      color: $text-primary;
+
+      .catalogue-title {
+        color: $accent;
+      }
+
+      .catalogue-line {
+        width: 60px;
+        background: $accent;
+      }
     }
 
     &:last-child {
-      border: 0;
+      margin-bottom: 0;
     }
   }
 
   &-pinned {
-    color: $default-tint;
-    font-family: $serif-secondary;
-    letter-spacing: .5px;
+    color: $accent;
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   &-time {
-    color: $default-tint;
-    font-family: $serif-secondary;
-    letter-spacing: .5px;
+    color: $text-muted;
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
   }
 
   &-title {
-    color: $default-shade;
-    @media (prefers-color-scheme: dark) {
-      color: $default-color-dark;
-    }
+    color: $text-heading;
     display: block;
-    font-family: $sans-serif;
-    font-size: 2rem;
+    font-family: $font-sans;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
+    letter-spacing: -0.02em;
+    @include transition(color 0.2s ease);
   }
 
   &-line {
-    @include transition(all .3s ease-out);
-    border-top: .2rem solid $default-shade;
+    @include transition(all 0.3s ease-out);
     display: block;
-    width: 2rem;
+    width: 30px;
+    height: 2px;
+    background: $text-faint;
+    border-radius: 1px;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
   }
 }

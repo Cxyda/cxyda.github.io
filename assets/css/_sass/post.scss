@@ -1,58 +1,74 @@
+@use 'variables' as *;
+
 .post {
-  padding: 3rem 0;
+  padding: 3rem 0 2rem;
 
   &-info {
-    color: $default-tint;
-    font-family: $serif-secondary;
-    letter-spacing: 0.5px;
+    color: $text-muted;
+    font-family: $font-mono;
+    font-size: 0.8rem;
     text-align: center;
+    letter-spacing: 0.02em;
 
     span {
-      font-style: italic;
+      font-style: normal;
+    }
+
+    time {
+      color: $accent;
     }
   }
 
   &-title {
-    color: $default-shade;
-    @media (prefers-color-scheme: dark) {
-      color: $default-color-dark;
-    }
-    font-family: $sans-serif;
-    font-size: 2.5rem;
+    color: $text-heading;
+    font-family: $font-sans;
+    font-size: 2.25rem;
+    font-weight: 700;
     margin: 1rem 0;
     text-align: center;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
   }
 
   &-line {
-    border-top: 0.4rem solid $default-shade;
+    border: none;
     display: block;
     margin: 0 auto 3rem;
-    width: 4rem;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, $accent, transparent);
+    border-radius: 2px;
   }
 
   p {
-    margin: 0 0 1rem;
-    text-align: justify;
+    margin: 0 0 1.25rem;
+    text-align: left;
+    line-height: 1.75;
   }
 
   a:hover {
     text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   img {
-    margin: 0 auto 0.5rem;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    border: 1px solid $border-subtle;
   }
 
   img + em {
-    color: $default-tint;
+    color: $text-muted;
     display: block;
-    font-family: $sans-serif;
-    font-size: 0.9rem;
+    font-family: $font-mono;
+    font-size: 0.8rem;
     font-style: normal;
     text-align: center;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  // CSS for making emoji inline
+  // Inline emoji
   img.emoji {
     display: inline-block;
     left: 0;
@@ -62,5 +78,24 @@
     vertical-align: text-top;
     padding: 0;
     margin: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  // Lists
+  ul, ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.4rem;
+      line-height: 1.75;
+    }
+  }
+
+  // Strong/bold
+  strong {
+    color: $text-heading;
+    font-weight: 600;
   }
 }

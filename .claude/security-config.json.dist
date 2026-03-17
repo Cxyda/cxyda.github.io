@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "project_root": "TEMPLATE_PROJECT_ROOT_REPLACE_WITH_YOUR_PROJECT_PATH",
+  "locked": true,
+  "config_validation": {
+    "required_fields": ["project_root"],
+    "project_root_must_exist": true
+  }
+}

@@ -1,0 +1,35 @@
+@use 'variables' as *;
+
+.notfound {
+  position: relative;
+  text-align: center;
+  margin: 6rem 0;
+
+  &-error {
+    font-family: $font-mono;
+    font-size: 3.5rem;
+    margin: 1rem 0;
+    color: $text-heading;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  &-line {
+    border: none;
+    display: block;
+    margin: 0 auto 2rem;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, $accent, transparent);
+    border-radius: 2px;
+  }
+
+  &-message {
+    max-width: 25rem;
+    margin: 0 auto;
+    color: $text-muted;
+    font-size: 1.1rem;
+  }
+}

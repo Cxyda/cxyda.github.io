@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "project_root": "/Users/daniel.steegmueller/Projects/blog",
+  "locked": true,
+  "config_validation": {
+    "required_fields": [
+      "project_root"
+    ],
+    "project_root_must_exist": true
+  }
+}
