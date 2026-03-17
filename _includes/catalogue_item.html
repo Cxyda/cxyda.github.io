@@ -1,9 +1,19 @@
+{% assign post_words = post.content | number_of_words %}
+{% assign post_minutes = post_words | divided_by: 200 %}
+{% if post_minutes < 1 %}{% assign post_minutes = 1 %}{% endif %}
+
 <a href="{{ post.url | prepend: site.baseurl }}" class="catalogue-item">
   <div>
     {% if include.sticky == 'true' %}
     <span class="catalogue-pinned">pinned</span>
     {% endif %}
-    <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%Y-%m-%d" }}</time>
+    <div class="catalogue-meta">
+      <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%Y-%m-%d" }}</time>
+      <span class="catalogue-reading-time">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm1-8.414V7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"/></svg>
+        {{ post_minutes }} min
+      </span>
+    </div>
     <h1 class="catalogue-title">{{ post.title }}</h1>
     <div class="catalogue-line"></div>
     <p>

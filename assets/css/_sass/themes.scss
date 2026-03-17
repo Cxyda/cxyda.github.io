@@ -1,0 +1,72 @@
+// ======================
+// Theme CSS Custom Properties
+// ======================
+// Dark theme (default) + Light theme override
+
+:root,
+[data-theme="dark"] {
+  --bg-primary: #0a0e14;
+  --bg-surface: #131920;
+  --bg-elevated: #1a2130;
+  --bg-hover: #1e2738;
+
+  --text-primary: #c5cdd9;
+  --text-heading: #e2e8f0;
+  --text-muted: #6b7a8d;
+  --text-faint: #3d4f5f;
+
+  --accent: #64ffda;
+  --accent-dim: rgba(100, 255, 218, 0.15);
+  --accent-hover: #a5ffec;
+  --link-color: #64ffda;
+
+  --code-color: #ff6b6b;
+  --code-bg: #0d1117;
+
+  --border-color: rgba(100, 255, 218, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px rgba(100, 255, 218, 0.05);
+
+  --selection-bg: rgba(100, 255, 218, 0.2);
+  --nav-bg: rgba(10, 14, 20, 0.9);
+
+  // Theme toggle icon
+  --theme-icon-sun: none;
+  --theme-icon-moon: block;
+}
+
+[data-theme="light"] {
+  --bg-primary: #fafbfc;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f0f2f5;
+  --bg-hover: #e8ecf0;
+
+  --text-primary: #2d3748;
+  --text-heading: #1a202c;
+  --text-muted: #718096;
+  --text-faint: #a0aec0;
+
+  --accent: #0d9488;
+  --accent-dim: rgba(13, 148, 136, 0.1);
+  --accent-hover: #0f766e;
+  --link-color: #0d9488;
+
+  --code-color: #d6336c;
+  --code-bg: #f1f5f9;
+
+  --border-color: rgba(13, 148, 136, 0.15);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(13, 148, 136, 0.05);
+
+  --selection-bg: rgba(13, 148, 136, 0.15);
+  --nav-bg: rgba(250, 251, 252, 0.9);
+
+  --theme-icon-sun: block;
+  --theme-icon-moon: none;
+}

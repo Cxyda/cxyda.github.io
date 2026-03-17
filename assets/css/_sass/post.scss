@@ -4,7 +4,7 @@
   padding: 3rem 0 2rem;
 
   &-info {
-    color: $text-muted;
+    color: var(--text-muted);
     font-family: $font-mono;
     font-size: 0.8rem;
     text-align: center;
@@ -15,12 +15,12 @@
     }
 
     time {
-      color: $accent;
+      color: var(--accent);
     }
   }
 
   &-title {
-    color: $text-heading;
+    color: var(--text-heading);
     font-family: $font-sans;
     font-size: 2.25rem;
     font-weight: 700;
@@ -36,8 +36,33 @@
     margin: 0 auto 3rem;
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, $accent, transparent);
+    background: linear-gradient(90deg, var(--accent), transparent);
     border-radius: 2px;
+  }
+
+  &-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  &-reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      opacity: 0.7;
+    }
   }
 
   p {
@@ -54,11 +79,11 @@
   img {
     margin: 1.5rem auto;
     border-radius: 8px;
-    border: 1px solid $border-subtle;
+    border: 1px solid var(--border-subtle);
   }
 
   img + em {
-    color: $text-muted;
+    color: var(--text-muted);
     display: block;
     font-family: $font-mono;
     font-size: 0.8rem;
@@ -95,7 +120,102 @@
 
   // Strong/bold
   strong {
-    color: $text-heading;
+    color: var(--text-heading);
     font-weight: 600;
+  }
+}
+
+// Table of Contents
+.toc-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  user-select: none;
+  @include transition(color 0.2s ease);
+
+  &:hover {
+    color: var(--accent);
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+
+  .toc-toggle {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--text-faint);
+  }
+}
+
+#toc {
+  padding: 0 1.25rem 0.75rem;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+
+    a {
+      display: block;
+      padding: 0.3rem 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-left: 2px solid transparent;
+      padding-left: 0.75rem;
+      @include transition(all 0.2s ease);
+
+      &:hover {
+        color: var(--accent);
+        border-left-color: var(--accent);
+      }
+
+      &.active {
+        color: var(--accent);
+        border-left-color: var(--accent);
+      }
+    }
+  }
+
+  .toc-h3 a {
+    padding-left: 1.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+// Giscus
+.giscus-container {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+
+  h3 {
+    text-align: center;
+    color: var(--text-muted);
+    font-family: $font-mono;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
   }
 }

@@ -6,10 +6,10 @@ code {
 }
 
 code {
-  background-color: $bg-elevated;
-  border: 1px solid $border-subtle;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: 4px;
-  color: $code-color;
+  color: var(--code-color);
   font-size: 0.85em;
   padding: 0.2em 0.45em;
 }
@@ -28,8 +28,8 @@ pre code {
 }
 
 .highlight {
-  background-color: $code-bg;
-  border: 1px solid $border-subtle;
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   line-height: 1.5;
   margin: 0 0 1.25rem;
@@ -42,9 +42,42 @@ pre code {
   }
 
   .lineno {
-    color: $text-faint;
+    color: var(--text-faint);
     display: inline-block;
     padding: 0 0.75rem 0 0.25rem;
     user-select: none;
+  }
+}
+
+// Copy button
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  color: var(--text-muted);
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  opacity: 0;
+  @include transition(all 0.2s ease);
+  z-index: 10;
+
+  .highlight:hover & {
+    opacity: 1;
+  }
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  &.copied {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 }

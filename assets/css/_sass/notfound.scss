@@ -9,10 +9,10 @@
     font-family: $font-mono;
     font-size: 3.5rem;
     margin: 1rem 0;
-    color: $text-heading;
+    color: var(--text-heading);
 
     span {
-      color: $accent;
+      color: var(--accent);
     }
   }
 
@@ -22,14 +22,14 @@
     margin: 0 auto 2rem;
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, $accent, transparent);
+    background: linear-gradient(90deg, var(--accent), transparent);
     border-radius: 2px;
   }
 
   &-message {
     max-width: 25rem;
     margin: 0 auto;
-    color: $text-muted;
+    color: var(--text-muted);
     font-size: 1.1rem;
   }
 }

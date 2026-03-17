@@ -1,0 +1,35 @@
+---
+layout: page
+title: Search
+permalink: /search
+---
+
+<div id="search" class="search-container">
+  <div id="search-input-wrapper">
+    <input type="text" id="search-input" placeholder="Search posts..." autofocus />
+  </div>
+  <div id="search-results"></div>
+</div>
+
+<link href="{{ '/pagefind/pagefind-ui.css' | relative_url }}" rel="stylesheet">
+<script src="{{ '/pagefind/pagefind-ui.js' | relative_url }}"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    new PagefindUI({
+      element: '#search',
+      showSubResults: true,
+      showImages: false,
+    });
+
+    // Apply custom styling after Pagefind renders
+    var style = document.createElement('style');
+    style.textContent = [
+      '.pagefind-ui__search-input { background: var(--bg-surface) !important; color: var(--text-primary) !important; border: 1px solid var(--border-subtle) !important; border-radius: 8px !important; font-family: inherit !important; }',
+      '.pagefind-ui__search-input:focus { border-color: var(--accent) !important; outline: none !important; }',
+      '.pagefind-ui__result-link { color: var(--link-color) !important; }',
+      '.pagefind-ui__result-excerpt { color: var(--text-muted) !important; }',
+      '.pagefind-ui__message { color: var(--text-muted) !important; }',
+    ].join('\n');
+    document.head.appendChild(style);
+  });
+</script>

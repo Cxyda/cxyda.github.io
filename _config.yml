@@ -48,5 +48,13 @@ exclude:
   - README.md
   - LICENSE.md
 
-# Disqus (Set to your disqus id)
+# Disqus (legacy, replaced by Giscus)
 disqus: cxyda_github_io
+
+# Giscus Comments (GitHub Discussions-backed)
+# To set up: 1) Enable Discussions on your repo 2) Install https://giscus.app 3) Fill in IDs from giscus.app
+giscus:
+  repo: "cxyda/cxyda.github.io"
+  repo_id: "R_kgDONQVCCg"
+  category: "General"
+  category_id: "DIC_kwDONQVCCs4C4oon"

@@ -5,6 +5,9 @@
 
   {% seo %}
 
+  <!-- Theme (apply early to prevent flash) -->
+  <script src="{{ "/assets/js/theme-toggle.js" | relative_url }}"></script>
+
   <!-- CSS -->
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   <link rel="stylesheet" href="{{ "/assets/css/dark-gist-theme.css" | relative_url }}">
@@ -22,7 +25,8 @@
   <!-- Mermaid -->
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    var isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+    mermaid.initialize({ startOnLoad: true, theme: isDark ? 'dark' : 'default' });
   </script>
 
   <!-- RSS -->

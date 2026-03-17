@@ -1,33 +1,33 @@
 @use 'variables' as *;
 
 .pagination {
-  border-top: 1px solid $border-subtle;
+  border-top: 1px solid var(--border-subtle);
   font-family: $font-mono;
   padding-top: 2rem;
   position: relative;
   text-align: center;
 
   span {
-    color: $text-muted;
+    color: var(--text-muted);
     font-size: 0.9rem;
   }
 
   .top {
     @include transition(all 0.2s ease-out);
-    color: $text-muted;
+    color: var(--text-muted);
     font-size: 0.85rem;
     padding: 0.4rem 0.75rem;
     border-radius: 6px;
 
     &:hover {
-      color: $accent;
-      background: $accent-dim;
+      color: var(--accent);
+      background: var(--accent-dim);
     }
   }
 
   .arrow {
     @include transition(all 0.2s ease-out);
-    color: $text-muted;
+    color: var(--text-muted);
     position: absolute;
     font-size: 1.2rem;
     padding: 0.25rem 0.5rem;
@@ -35,8 +35,8 @@
 
     &:hover,
     &:focus {
-      color: $accent;
-      background: $accent-dim;
+      color: var(--accent);
+      background: var(--accent-dim);
       text-decoration: none;
     }
   }

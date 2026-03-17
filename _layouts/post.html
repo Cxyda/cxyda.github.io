@@ -2,6 +2,9 @@
 layout: default
 ---
 
+{% assign words = content | number_of_words %}
+{% assign minutes = words | divided_by: 200 %}
+{% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
 
 <div class="post">
   <div class="post-info">
@@ -15,7 +18,7 @@ layout: default
     {% if page.date and page.lastmod %}
       <br>
       <span>on&nbsp;</span><time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
-      <span> and last updated on&nbsp;</span><time datetime="{{ page.lastmod }}">{{ page.lastmod | date: "%B %d, %Y" }}</time>    
+      <span> and last updated on&nbsp;</span><time datetime="{{ page.lastmod }}">{{ page.lastmod | date: "%B %d, %Y" }}</time>
     {% elsif page.date and page.showlastmod %}
       <br>
       <span>on&nbsp;</span><time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
@@ -29,13 +32,31 @@ layout: default
     {% endif %}
   </div>
 
+  <div class="post-meta">
+    <span class="post-reading-time">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm1-8.414V7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"/></svg>
+      {{ minutes }} min read
+    </span>
+  </div>
+
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-line"></div>
+
+  <div class="toc-wrapper">
+    <div class="toc-header" onclick="var toc=document.getElementById('toc');toc.style.display=toc.style.display==='none'?'block':'none';">
+      <svg viewBox="0 0 24 24"><path d="M3 4h18v2H3V4zm0 7h12v2H3v-2zm0 7h18v2H3v-2z"/></svg>
+      Table of Contents
+      <span class="toc-toggle">toggle</span>
+    </div>
+    <div id="toc"></div>
+  </div>
 
   {{ content }}
 </div>
 
-{% if page.comments %}
+{% if site.giscus %}
+  {% include giscus_comments.html %}
+{% elsif page.comments %}
   {% include disqus_comments.html %}
 {% endif %}
 
@@ -49,3 +70,6 @@ layout: default
 
   <a href="#" class="top">Top</a>
 </div>
+
+<script src="{{ "/assets/js/toc.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/copy-code.js" | relative_url }}"></script>
